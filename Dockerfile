@@ -1,4 +1,5 @@
-FROM alpine/socat:latest
+FROM python:3-alpine
 
 EXPOSE 8080
-CMD ["-d", "-d", "TCP-LISTEN:8080,crlf,reuseaddr,fork", "SYSTEM:echo HTTP/1.1 200 OK;\r\n"]
+ADD server.py /server.py
+ENTRYPOINT ["python3", "server.py"]
